@@ -241,6 +241,8 @@ vim.keymap.set(
 	{ desc = "Select all ocurrences in file" }
 )
 
+vim.keymap.set("n", "<leader>lp", [[viw<leader>p]], { desc = "Replace word with copy reference" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
