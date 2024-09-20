@@ -159,7 +159,12 @@ return {
 					--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 					--   },
 					-- },
-					-- pickers = {}
+					pickers = {
+						find_files = {
+							file_ignore_patterns = { "node_modules", ".git", ".venv" },
+							hidden = true,
+						},
+					},
 					extensions = {
 						["ui-select"] = {
 							require("telescope.themes").get_dropdown(),
@@ -712,6 +717,21 @@ return {
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 			opts = {
 				ensure_installed = {
+					"python",
+					"javascript",
+					"typescript",
+					"regex",
+					"dockerfile",
+					"toml",
+					"json",
+					"go",
+					"gitignore",
+					"graphql",
+					"yaml",
+					"make",
+					"tsx",
+					"css",
+					"html",
 					"bash",
 					"c",
 					"diff",
