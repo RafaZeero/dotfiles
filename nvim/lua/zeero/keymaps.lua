@@ -53,7 +53,24 @@ vim.keymap.set(
 	{ desc = "Select all ocurrences in file" }
 )
 
+vim.keymap.set("n", "<C-m>", function()
+	require("harpoon.mark").add_file()
+end, { desc = "Add file" })
+
+vim.keymap.set("n", "<C-9>", function()
+	require("harpoon.ui").nav_prev()
+end, { desc = "Go to previous" })
+
+vim.keymap.set("n", "<C-0>", function()
+	require("harpoon.ui").nav_next()
+end, { desc = "Go to next" })
+
+vim.keymap.set("n", "<leader>hm", function()
+	require("harpoon.cmd-ui").toggle_quick_menu()
+end, { desc = "Toggle quick menu" })
+
 -- Buffer
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Remove current buffer" })
+vim.keymap.set("n", "<leader>bs", "<cmd>%bd|e#<CR>", { desc = "Remove other buffers" })
 
 vim.keymap.set("n", "<leader>lp", [[viw<leader>p]], { desc = "Replace word with copy reference" })

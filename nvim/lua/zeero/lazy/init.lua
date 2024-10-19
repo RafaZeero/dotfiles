@@ -92,6 +92,9 @@ return {
 					{ "<leader>s", group = "[S]earch" },
 					{ "<leader>w", group = "[W]orkspace" },
 					{ "<leader>t", group = "[T]oggle" },
+					{ "<leader>b", group = "[B]uffer" },
+					{ "<leader>g", group = "[G]it" },
+					{ "<leader>p", group = "[P]ersonal" },
 					{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 				},
 			},
@@ -761,25 +764,6 @@ return {
 			--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-		},
-		{
-			"kdheepak/lazygit.nvim",
-			cmd = {
-				"LazyGit",
-				"LazyGitConfig",
-				"LazyGitCurrentFile",
-				"LazyGitFilter",
-				"LazyGitFilterCurrentFile",
-			},
-			-- optional for floating window border decoration
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-			-- setting the keybinding for LazyGit with 'keys' is recommended in
-			-- order to load the plugin when the command is run for the first time
-			keys = {
-				{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			},
 		},
 
 		-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the

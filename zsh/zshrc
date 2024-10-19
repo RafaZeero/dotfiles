@@ -94,11 +94,13 @@ alias l='ls -lah --group-directories-first'
 
 # Personal Data
 alias mei='echo 47225681000150'
+alias me='echo 55788697000107'
 
 # Golang
 alias sqlc='/home/zeero/go/bin/./sqlc'
 alias goose='/home/zeero/go/bin/./goose'
 alias fix-go='export PATH=$PATH:/usr/local/go/bin'
+alias air='~/air'
 
 # Custom Executables
 alias onepay='~/bin/./onepay.sh'
@@ -114,6 +116,8 @@ alias dc="docker compose"
 # Lazy
 alias lzd='lazydocker'
 alias lzg='lazygit'
+
+alias vim='nvim'
 
 # xmodmap -e 'keycode 47 = o O'
 
