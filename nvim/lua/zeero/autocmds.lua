@@ -11,3 +11,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+local client = vim.lsp.start_client({
+	name = "educationalsp",
+	cmd = { "/home/zeero/Documents/codes/projects/go/lsp-tj/main" },
+})
+
+if not client then
+	vim.notify("hey, you didnt do the client thing good", 1)
+	return
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.lsp.buf_attach_client(0, client)
+	end,
+})

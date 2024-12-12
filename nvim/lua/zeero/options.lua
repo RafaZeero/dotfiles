@@ -14,6 +14,9 @@ vim.g.netrw_winsize = 25
 -- Layout
 -- vim.g.netrw_liststyle = 3 -- [[ Setting options ]]
 
+vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_python_ruff = "ruff_lsp"
+
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`

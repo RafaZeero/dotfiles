@@ -21,7 +21,7 @@ return {
 		lazy = false,
 		opts = {},
 		config = function()
-			ColorMyPencils()
+			-- ColorMyPencils()
 		end,
 	},
 

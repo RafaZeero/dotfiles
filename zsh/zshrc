@@ -91,6 +91,7 @@ alias chrome="google-chrome"
 # alias unreal="/home/zeero/Downloads/Linux_Unreal_Engine_5.0.3/Engine/Binaries/Linux/UnrealEditor"
 alias obsidian="~/bin/./obsidian.sh"
 alias l='ls -lah --group-directories-first'
+alias bat='batcat'
 
 # Personal Data
 alias mei='echo 47225681000150'
@@ -118,6 +119,10 @@ alias lzd='lazydocker'
 alias lzg='lazygit'
 
 alias vim='nvim'
+alias hey='~/Downloads/hey_linux_amd64'
+
+# Isso pq o 'time' do zhs eh diferente do bash
+alias timecheck='/usr/bin/time'
 
 # xmodmap -e 'keycode 47 = o O'
 

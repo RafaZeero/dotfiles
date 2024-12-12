@@ -36,8 +36,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
 
 vim.keymap.set("n", "<leader>U", vim.cmd.UndotreeToggle, { desc = "UndotreeToggle" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection Up" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection Down" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection Down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection Up" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line below" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Go to next search" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Go to previous search" })
@@ -52,22 +52,6 @@ vim.keymap.set(
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Select all ocurrences in file" }
 )
-
-vim.keymap.set("n", "<C-m>", function()
-	require("harpoon.mark").add_file()
-end, { desc = "Add file" })
-
-vim.keymap.set("n", "<C-9>", function()
-	require("harpoon.ui").nav_prev()
-end, { desc = "Go to previous" })
-
-vim.keymap.set("n", "<C-0>", function()
-	require("harpoon.ui").nav_next()
-end, { desc = "Go to next" })
-
-vim.keymap.set("n", "<leader>hm", function()
-	require("harpoon.cmd-ui").toggle_quick_menu()
-end, { desc = "Toggle quick menu" })
 
 -- Buffer
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Remove current buffer" })

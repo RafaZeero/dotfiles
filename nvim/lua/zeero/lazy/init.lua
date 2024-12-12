@@ -397,10 +397,14 @@ return {
 				--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 				local servers = {
 					-- clangd = {},
-					gopls = {},
+					gopls = {
+						gofumpt = true,
+						goimports = true,
+						-- golines = true,
+					},
 					pyright = {},
 					rust_analyzer = {},
-					ruff_lsp = {
+					ruff = {
 						init_options = {
 							settings = {
 								-- Any extra CLI arguments for `ruff` go here.
@@ -520,6 +524,7 @@ return {
 					--
 					-- You can use 'stop_after_first' to run the first available formatter from the list
 					rust = { "rustfmt", lsp_format = "fallback" },
+					go = { "gopls", "gofumpt" },
 					javascript = { "prettierd", "prettier", stop_after_first = true },
 					typescript = { "prettierd" },
 					javascriptreact = { "prettierd" },
