@@ -1,0 +1,29 @@
+[/]
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'a48a9ee6-ea31-46ff-9913-63220b5e81c3']
+
+[:a48a9ee6-ea31-46ff-9913-63220b5e81c3]
+bold-is-bright=false
+font='FiraCode Nerd Font Light 12'
+palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,0,238)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(229,229,229)', 'rgb(127,127,127)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(92,92,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
+use-system-font=false
+use-theme-colors=true
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='teste'
+
+[:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-color='rgb(2,14,31)'
+background-transparency-percent=0
+bold-color='rgb(245,109,24)'
+bold-color-same-as-fg=false
+bold-is-bright=false
+cell-height-scale=1.0
+cell-width-scale=1.0
+font='FiraCode Nerd Font Light 12'
+foreground-color='rgb(200,230,243)'
+palette=['rgb(159,236,196)', 'rgb(220,50,47)', 'rgb(48,230,33)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(248,235,195)', 'rgb(43,151,92)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(210,162,234)']
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name=' Zeero'
