@@ -1,1 +1,1 @@
-require("zeero")
+require("configs")

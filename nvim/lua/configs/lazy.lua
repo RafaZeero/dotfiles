@@ -7,6 +7,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		error("Error cloning lazy.nvim:\n" .. out)
 	end
 end ---@diagnostic disable-next-line: undefined-field
+
+-- Hey! put lazy into the runtimepath for neovim! -tj
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
@@ -20,4 +22,9 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require("lazy").setup("zeero.lazy")
+require("lazy").setup({
+	spec = {
+		-- import plugins
+		{ import = "configs.plugins" },
+	},
+})
