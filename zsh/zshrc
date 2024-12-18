@@ -104,11 +104,10 @@ alias fix-go='export PATH=$PATH:/usr/local/go/bin'
 alias air='~/air'
 
 # Custom Executables
-alias onepay='~/bin/./onepay.sh'
-alias arctos='~/bin/./arctos.sh'
-alias voa='~/bin/./voa.sh'
-alias go-hot-reload='~/bin/./go-hot-reload.sh'
-alias zeero='~/bin/./zeero.sh'
+for script in ~/binaries/*.sh; do
+  alias_name=$(basename "${script}" .sh)
+  alias "$alias_name"="~/bin/./$(basename "$script")"
+done
 
 # Docker
 alias d="docker"
