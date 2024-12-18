@@ -104,7 +104,7 @@ alias fix-go='export PATH=$PATH:/usr/local/go/bin'
 alias air='~/air'
 
 # Custom Executables
-for script in ~/binaries/*.sh; do
+for script in ~/bin/*.sh; do
   alias_name=$(basename "${script}" .sh)
   alias "$alias_name"="~/bin/./$(basename "$script")"
 done
