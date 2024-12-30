@@ -117,6 +117,7 @@ alias dc="docker compose"
 alias lzd='lazydocker'
 alias lzg='lazygit'
 
+# alias sqlc='/usr/bin/sqlc'
 alias vim='nvim'
 alias hey='~/Downloads/hey_linux_amd64'
 
