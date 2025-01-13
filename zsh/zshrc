@@ -109,6 +109,8 @@ for script in ~/bin/*.sh; do
   alias "$alias_name"="~/bin/./$(basename "$script")"
 done
 
+alias zp="cd /home/zeero/Documents/codes/projects/"
+
 # Docker
 alias d="docker"
 alias dc="docker compose"
