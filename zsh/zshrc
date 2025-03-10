@@ -85,13 +85,13 @@ alias copy="xclip -selection clipboard"
 alias paste="xclip -o -selection clipboard"
 
 alias zshconfig="open ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias chrome="google-chrome"
-# alias maza_invest="~/bin/./maza.sh"
-# alias unreal="/home/zeero/Downloads/Linux_Unreal_Engine_5.0.3/Engine/Binaries/Linux/UnrealEditor"
 alias obsidian="~/bin/./obsidian.sh"
 alias l='ls -lah --group-directories-first'
 alias bat='batcat'
+
+# cursor
+alias cursor='~/bin/cursor-ai.AppImage --no-sandbox'
 
 # Personal Data
 alias mei='echo 47225681000150'
@@ -119,14 +119,11 @@ alias dc="docker compose"
 alias lzd='lazydocker'
 alias lzg='lazygit'
 
-# alias sqlc='/usr/bin/sqlc'
 alias vim='nvim'
 alias hey='~/Downloads/hey_linux_amd64'
 
-# Isso pq o 'time' do zhs eh diferente do bash
+# Isso pq o 'time' do zsh eh diferente do bash
 alias timecheck='/usr/bin/time'
-
-# xmodmap -e 'keycode 47 = o O'
 
 alias python='python3'
 
@@ -139,20 +136,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
-
-# Custom binary files
-# export PATH="$PATH:$HOME/bin"
-
-#export GO_PATH=/usr/local/go
-#export PATH=$PATH:/$GO_PATH/bin
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
 export PATH=$PATH:/home/zeero/.temporalio/bin
 export PATH=$PATH:/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/nvim
-#alias vim=nvim
-#alias svim='sudo nvim'
-#alias tmux="TERM=screen-256color-bce tmux"
 
