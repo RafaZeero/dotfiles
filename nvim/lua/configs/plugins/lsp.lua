@@ -115,6 +115,7 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          ---@diagnostic disable-next-line: missing-parameter, param-type-mismatch
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -179,11 +180,27 @@ return {
         pyright = {
           settings = {
             python = {
+              disableOrganizeImports = false,
               analysis = {
-                typeCheckingMode = "basic", -- Opções: off, basic, strict
+                typeCheckingMode = "standard", -- Opções: off, basic, strict, standard
                 diagnosticMode = "openFilesOnly", -- Ou "workspace" para analisar todos os arquivos
                 useLibraryCodeForTypes = true, -- Usar código da biblioteca para verificação de tipos
                 reportMissingImports = true,
+
+                autoImportCompletions = true,
+                generateWithTypeAnnotation = true,
+                inlayHints = {
+                  functionReturnTypes = true,
+                  callArgumentNames = "partial",
+                  variableTypes = true,
+                },
+                supportDocstringTemplate = true,
+                typeEvaluation = {
+                  enableReachabilityAnalysis = true,
+                  strictDictionaryInference = true,
+                  strictListInference = true,
+                  strictSetInference = true,
+                },
               },
             },
           },
@@ -192,6 +209,8 @@ return {
         ruff = {
           init_options = {
             settings = {
+              organizeImports = false,
+              fixAll = true,
               -- Any extra CLI arguments for `ruff` go here.
               args = {},
             },
