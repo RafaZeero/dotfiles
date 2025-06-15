@@ -122,6 +122,9 @@ alias lzg='lazygit'
 alias vim='nvim'
 alias hey='~/Downloads/hey_linux_amd64'
 
+# Cursor
+alias cursor='cursor-ai.AppImage --no-sandbox'
+
 # Isso pq o 'time' do zsh eh diferente do bash
 alias timecheck='/usr/bin/time'
 
