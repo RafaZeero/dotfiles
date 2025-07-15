@@ -84,17 +84,16 @@ source /home/zeero/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggest
 alias copy="xclip -selection clipboard"
 alias paste="xclip -o -selection clipboard"
 
-alias zshconfig="open ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 alias chrome="google-chrome"
 alias obsidian="~/bin/./obsidian.sh"
 alias l='ls -lah --group-directories-first'
 alias bat='batcat'
 
 # cursor
-alias cursor='~/bin/cursor-ai.AppImage --no-sandbox'
+alias cursor='~/bin/cursor.AppImage --no-sandbox'
 
 # Personal Data
-alias mei='echo 47225681000150'
 alias me='echo 55788697000107'
 
 # Golang
@@ -122,13 +121,13 @@ alias lzg='lazygit'
 alias vim='nvim'
 alias hey='~/Downloads/hey_linux_amd64'
 
-# Cursor
-alias cursor='cursor-ai.AppImage --no-sandbox'
-
 # Isso pq o 'time' do zsh eh diferente do bash
 alias timecheck='/usr/bin/time'
 
 alias python='python3'
+
+# loads local envs [private]
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -144,4 +143,12 @@ PATH="$GOPATH/bin:$PATH"
 export PATH=$PATH:/home/zeero/.temporalio/bin
 export PATH=$PATH:/opt/nvim-linux64/bin
 export PATH=$PATH:/opt/nvim
+export PATH=$PATH:/usr/local/go/bin
 
+# pnpm
+export PNPM_HOME="/home/zeero/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
