@@ -15,9 +15,10 @@ return {
           },
         },
       },
+      "saghen/blink.cmp",
       { "Bilal2453/luvit-meta", lazy = true },
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
       { "j-hui/fidget.nvim", opts = {} },
@@ -53,11 +54,6 @@ return {
           end
         end
         return values
-      end
-
-      local capabilities = nil
-      if pcall(require, "cmp_nvim_lsp") then
-        capabilities = require("cmp_nvim_lsp").default_capabilities()
       end
 
       local lspconfig = require("lspconfig")
@@ -140,13 +136,8 @@ return {
         -- mojo = { manual_install = true },
 
         -- Enabled biome formatting, turn off all the other ones generally
-        ts_ls = {
-          root_dir = require("lspconfig").util.root_pattern("package.json"),
-          single_file = false,
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
+        -- eslint = {},
+        ts_ls = {},
         -- denols = true,
         jsonls = {
           server_capabilities = {
@@ -248,7 +239,7 @@ return {
           config = {}
         end
         config = vim.tbl_deep_extend("force", {}, {
-          capabilities = capabilities,
+          capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities),
         }, config)
 
         lspconfig[name].setup(config)
