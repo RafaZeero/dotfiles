@@ -13,7 +13,7 @@ return {
     },
     config = function()
       local dap = require("dap")
-      dap.set_log_level("TRACE")
+      dap.set_log_level("DEBUG")
       local ui = require("dapui")
       -- local utils = require("dap.utils")
 
@@ -158,6 +158,21 @@ return {
       --   },
       -- }
 
+      local extension_path = vim.fn.expand("$MASON/packages/codelldb/extension/")
+      local codelldb_path = extension_path .. "adapter/codelldb"
+
+      dap.adapters.lldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = codelldb_path,
+          args = {
+            "--port",
+            "${port}",
+          },
+        },
+      }
+
       dap.adapters.python = {
         type = "executable",
         command = pythonPath(),
@@ -169,6 +184,8 @@ return {
         command = "node",
         args = { "--experimental-strip-types" },
       }
+
+      print(vim.inspect(dap.adapters))
 
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<leader>Db", dap.toggle_breakpoint, { desc = "Toggle [B]reakpoint" })
