@@ -60,10 +60,10 @@ return {
           name = "[Z] Langgraph",
           request = "launch",
           -- program = vim.fn.getcwd() .. "/.venv/bin/langgraph",
-          program = vim.fn.exepath("uv"),
+          program = vim.fn.exepath("poe"),
           justMyCode = false,
           -- python = vim.fn.getcwd() .. "/.venv/bin/python",
-          args = { "run", "langgraph", "dev" },
+          args = { "dev" },
         },
       }
 
