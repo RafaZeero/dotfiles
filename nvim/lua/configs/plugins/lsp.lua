@@ -21,7 +21,7 @@ return {
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-      { "j-hui/fidget.nvim", opts = {} },
+      -- { "j-hui/fidget.nvim", opts = {} },
       { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
       { "elixir-tools/elixir-tools.nvim" },
