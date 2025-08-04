@@ -185,8 +185,6 @@ return {
         args = { "--experimental-strip-types" },
       }
 
-      print(vim.inspect(dap.adapters))
-
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<leader>Db", dap.toggle_breakpoint, { desc = "Toggle [B]reakpoint" })
       vim.keymap.set("n", "<leader>Dgb", dap.run_to_cursor, opts)
