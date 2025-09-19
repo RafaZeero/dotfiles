@@ -32,8 +32,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("custom-term-open", {}),
   callback = function()
-    vim.opt_local.set.number = false
-    vim.opt_local.set.relativenumber = false
-    vim.opt_local.set.scrolloff = 0
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.scrolloff = 0
   end,
 })
