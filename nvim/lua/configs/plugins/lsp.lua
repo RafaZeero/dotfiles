@@ -17,7 +17,15 @@ return {
       },
       "saghen/blink.cmp",
       { "Bilal2453/luvit-meta", lazy = true },
-      "mason-org/mason.nvim",
+      {
+        "mason-org/mason.nvim",
+        opts = {
+          registries = {
+            "github:mason-org/mason-registry",
+            "github:Crashdummyy/mason-registry",
+          },
+        },
+      },
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -56,6 +64,17 @@ return {
         return values
       end
 
+      local pythonPath = function()
+        local cwd = vim.fn.getcwd()
+        if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+          return cwd .. "/venv/bin/python"
+        elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+          return cwd .. "/.venv/bin/python"
+        else
+          return "/usr/bin/python"
+        end
+      end
+
       local lspconfig = require("lspconfig")
 
       local servers = {
@@ -82,7 +101,7 @@ return {
           --   semanticTokensProvider = vim.NIL,
           -- },
         },
-        rust_analyzer = true,
+        -- rust_analyzer = true,
 
         pyright = {
           settings = {
@@ -91,6 +110,7 @@ return {
               disableTaggedHints = true,
             },
             python = {
+              pythonPath = pythonPath(),
               analysis = {
                 typeCheckingMode = "standard", -- Opções: off, basic, strict, standard
                 diagnosticMode = "openFilesOnly", -- Ou "workspace" para analisar todos os arquivos
@@ -136,7 +156,7 @@ return {
         -- mojo = { manual_install = true },
 
         -- Enabled biome formatting, turn off all the other ones generally
-        -- eslint = {},
+        eslint = {},
         ts_ls = {},
         -- denols = true,
         jsonls = {
@@ -187,6 +207,22 @@ return {
         --
         --   filetypes = { "c" },
         -- },
+
+        roslyn = {
+          cmd = {
+            "dotnet",
+            "/home/zeero/.local/share/nvim/mason/bin/Microsoft.CodeAnalysis.LanguageServer.linux-x64.5.0.0-2-vs.25467.15/content/LanguageServer/linux-x64/Microsoft.CodeAnalysis.LanguageServer.dll",
+            "--logLevel", -- this property is required by the server
+            "Information",
+            "--extensionLogDirectory", -- this property is required by the server
+            vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
+            "--stdio",
+          },
+          on_attach = function(client, bufnr)
+            -- força o Roslyn a usar utf-16
+            client.offset_encoding = "utf-16"
+          end,
+        },
 
         tailwindcss = {
           init_options = {
@@ -244,6 +280,10 @@ return {
 
         lspconfig[name].setup(config)
       end
+
+      vim.lsp.config("*", {
+        root_markers = { ".git" },
+      })
 
       local disable_semantic_tokens = {
         -- lua = true,
