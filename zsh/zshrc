@@ -110,6 +110,8 @@ done
 
 alias zp="cd /home/zeero/Documents/codes/projects/"
 
+alias showkeys='screenkey --scr 1 -t 0.4 --no-whitespace --opacity 1 --font-size small -g 40%x80%+30%+216'
+
 # Docker
 alias d="docker"
 alias dc="docker compose"
