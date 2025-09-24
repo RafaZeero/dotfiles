@@ -1,4 +1,4 @@
-require("configs")
+require("config")
 
 function R(name)
   package.loaded[name] = nil
