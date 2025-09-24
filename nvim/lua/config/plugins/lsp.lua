@@ -285,6 +285,9 @@ return {
         root_markers = { ".git" },
       })
 
+      -- @TODO: ver pq isso esta disparando erro de table nil
+      -- require("mason-lspconfig").setup()
+
       local disable_semantic_tokens = {
         -- lua = true,
       }
