@@ -75,6 +75,7 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlightin
 source $ZSH/oh-my-zsh.sh
 source /home/zeero/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/zeero/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(kubectl completion zsh)
 
 
 #--------------------------------------------------------------------------
@@ -111,6 +112,8 @@ done
 alias zp="cd /home/zeero/Documents/codes/projects/"
 
 alias showkeys='screenkey --scr 1 -t 0.4 --no-whitespace --opacity 1 --font-size small -g 40%x80%+30%+216'
+
+alias get_my_ip='curl https://ipinfo.io/ip'
 
 # Docker
 alias d="docker"
