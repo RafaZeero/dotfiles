@@ -76,6 +76,39 @@ return {
           -- python = vim.fn.getcwd() .. "/.venv/bin/python",
           args = { "dev" },
         },
+        {
+          type = "python",
+          request = "launch",
+          name = "[Z] Launch current file",
+          program = "${file}", -- Debuga o arquivo atualmente aberto
+          pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            -- Tenta usar o venv local primeiro
+            if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+              return cwd .. "/.venv/bin/python"
+            else
+              return "/usr/bin/python3"
+            end
+          end,
+        },
+        {
+          type = "python",
+          request = "launch",
+          name = "[Z] Launch file with arguments",
+          program = "${file}",
+          args = function()
+            local args_string = vim.fn.input("Arguments: ")
+            return vim.split(args_string, " +")
+          end,
+          pythonPath = function()
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+              return cwd .. "/.venv/bin/python"
+            else
+              return "/usr/bin/python3"
+            end
+          end,
+        },
       }
 
       dap.configurations.typescript = {
