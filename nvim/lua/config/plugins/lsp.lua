@@ -178,16 +178,35 @@ return {
         },
 
         yamlls = {
+          cmd = { "yaml-language-server", "--stdio" },
+          filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab", "yaml.helm-values" },
+          root_markers = { ".git" },
           settings = {
-            yaml = {
-              schemaStore = {
-                enable = false,
-                url = "",
-              },
-              -- schemas = require("schemastore").yaml.schemas(),
-            },
+            -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+            redhat = { telemetry = { enabled = false } },
+            -- formatting disabled by default in yaml-language-server; enable it
+            yaml = { format = { enable = true } },
           },
+          on_init = function(client)
+            --- https://github.com/neovim/nvim-lspconfig/pull/4016
+            --- Since formatting is disabled by default if you check `client:supports_method('textDocument/formatting')`
+            --- during `LspAttach` it will return `false`. This hack sets the capability to `true` to facilitate
+            --- autocmd's which check this capability
+            client.server_capabilities.documentFormattingProvider = true
+          end,
         },
+
+        -- yamlls = {
+        --   settings = {
+        --     yaml = {
+        --       schemaStore = {
+        --         enable = false,
+        --         url = "",
+        --       },
+        --       -- schemas = require("schemastore").yaml.schemas(),
+        --     },
+        --   },
+        -- },
 
         -- elixirls = {
         --   cmd = { "/home/tjdevries/.local/share/nvim/mason/bin/elixir-ls" },
@@ -207,22 +226,6 @@ return {
         --
         --   filetypes = { "c" },
         -- },
-
-        roslyn = {
-          cmd = {
-            "dotnet",
-            "/home/zeero/.local/share/nvim/mason/bin/Microsoft.CodeAnalysis.LanguageServer.linux-x64.5.0.0-2-vs.25467.15/content/LanguageServer/linux-x64/Microsoft.CodeAnalysis.LanguageServer.dll",
-            "--logLevel", -- this property is required by the server
-            "Information",
-            "--extensionLogDirectory", -- this property is required by the server
-            vim.fs.joinpath(vim.uv.os_tmpdir(), "roslyn_ls/logs"),
-            "--stdio",
-          },
-          on_attach = function(client, bufnr)
-            -- força o Roslyn a usar utf-16
-            client.offset_encoding = "utf-16"
-          end,
-        },
 
         tailwindcss = {
           init_options = {
@@ -246,6 +249,33 @@ return {
               }),
             },
           },
+        },
+        docker_language_server = {
+          cmd = { "docker-language-server", "start", "--stdio" },
+          filetypes = { "dockerfile", "yaml.docker-compose" },
+          get_language_id = function(_, ftype)
+            if ftype == "yaml.docker-compose" or ftype:lower():find("ya?ml") then
+              return "dockercompose"
+            else
+              return ftype
+            end
+          end,
+          root_markers = {
+            "Dockerfile",
+            "docker-compose.yaml",
+            "docker-compose.yml",
+            "compose.yaml",
+            "compose.yml",
+            "docker-bake.json",
+            "docker-bake.hcl",
+            "docker-bake.override.json",
+            "docker-bake.override.hcl",
+          },
+        },
+        docker_compose_language_service = {
+          cmd = { "docker-compose-langserver", "--stdio" },
+          filetypes = { "yaml.docker-compose" },
+          root_markers = { "docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml" },
         },
       }
 
