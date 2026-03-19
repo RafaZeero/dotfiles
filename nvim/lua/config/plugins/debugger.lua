@@ -47,15 +47,21 @@ return {
         end,
       })
 
-      local pythonPath = function()
+      local pythonPath = function(from)
         local cwd = vim.fn.getcwd()
+        local path = ""
         if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-          return cwd .. "/venv/bin/python"
+          -- return cwd .. "/venv/bin/python"
+          path = cwd .. "/venv/bin/python"
         elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-          return cwd .. "/.venv/bin/python"
+          -- return cwd .. "/.venv/bin/python"
+          path = cwd .. "/.venv/bin/python"
         else
-          return "/usr/bin/python"
+          -- return "/usr/bin/python"
+          path = "/usr/bin/python"
         end
+        -- vim.notify(from .. path)
+        return path
       end
 
       dap.configurations.python = {
@@ -66,30 +72,55 @@ return {
           program = vim.fn.getcwd() .. "/manage.py", -- NOTE: Adapt path to manage.py as needed
           args = { "runserver", "--noreload" },
         },
+        -- {
+        --   type = "python",
+        --   name = "[Z] Langgraph",
+        --   request = "launch",
+        --   python = pythonPath("config"),
+        --   program = vim.fn.getcwd() .. "/.venv/bin/langgraph",
+        --   -- program = vim.fn.exepath("poe"),
+        --   justMyCode = false,
+        --   -- python = vim.fn.getcwd() .. "/.venv/bin/python",
+        --   cwd = vim.fn.getcwd(),
+        --   args = { "dev" },
+        -- },
+        -- {
+        --   type = "python",
+        --   name = "[Z] Langgraph (debugpy launch)",
+        --   request = "launch",
+        --   module = "langgraph_cli",
+        --   args = { "dev" },
+        --   python = pythonPath("langgraph-debug"),
+        --   pythonArgs = { "-Xfrozen_modules=off" },
+        --   console = "integratedTerminal",
+        --   justMyCode = false,
+        --   cwd = vim.fn.getcwd(),
+        --   stopOnEntry = true,
+        --   subProcess = false,
+        --   redirectOutput = true,
+        --   showReturnValue = true,
+        -- },
         {
           type = "debugpy",
-          name = "[Z] Langgraph",
-          request = "launch",
-          -- program = vim.fn.getcwd() .. "/.venv/bin/langgraph",
-          program = vim.fn.exepath("poe"),
+          name = "[Z] Langgraph attach",
+          request = "attach",
           justMyCode = false,
-          -- python = vim.fn.getcwd() .. "/.venv/bin/python",
-          args = { "dev" },
         },
+        -- {
+        --   type = "python",
+        --   name = "[Z] Langgraph (poe dev)",
+        --   request = "launch",
+        --   module = "poethepoet",
+        --   args = { "dev" },
+        --   cwd = vim.fn.getcwd(),
+        --   justMyCode = false,
+        -- },
         {
           type = "python",
           request = "launch",
           name = "[Z] Launch current file",
           program = "${file}", -- Debuga o arquivo atualmente aberto
-          pythonPath = function()
-            local cwd = vim.fn.getcwd()
-            -- Tenta usar o venv local primeiro
-            if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-              return cwd .. "/.venv/bin/python"
-            else
-              return "/usr/bin/python3"
-            end
-          end,
+          pythonPath = pythonPath("config-onefile"),
         },
         {
           type = "python",
@@ -100,14 +131,7 @@ return {
             local args_string = vim.fn.input("Arguments: ")
             return vim.split(args_string, " +")
           end,
-          pythonPath = function()
-            local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-              return cwd .. "/.venv/bin/python"
-            else
-              return "/usr/bin/python3"
-            end
-          end,
+          pythonPath = pythonPath("config-onefile-with-args"),
         },
       }
 
@@ -208,9 +232,25 @@ return {
 
       dap.adapters.python = {
         type = "executable",
-        command = pythonPath(),
+        command = pythonPath("adapter"),
         args = { "-m", "debugpy.adapter" },
       }
+
+      dap.adapters.debugpy = function(callback, config)
+        if config.request == "attach" then
+          callback({
+            type = "server",
+            host = "127.0.0.1",
+            port = 2025,
+          })
+        else
+          callback({
+            type = "executable",
+            command = pythonPath("adapter"),
+            args = { "-m", "debugpy.adapter" },
+          })
+        end
+      end
 
       dap.adapters.node = {
         type = "executable",

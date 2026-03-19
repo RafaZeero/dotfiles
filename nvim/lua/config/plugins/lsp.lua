@@ -250,7 +250,7 @@ return {
             },
           },
         },
-        docker_language_server = {
+        dockerls = {
           cmd = { "docker-language-server", "start", "--stdio" },
           filetypes = { "dockerfile", "yaml.docker-compose" },
           get_language_id = function(_, ftype)
