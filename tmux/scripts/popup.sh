@@ -6,6 +6,7 @@ COMMANDS=(
   "[g]o run"
   "[m]ake run"
   "[u]v run ipython"
+  "[t]erminal"
   "[c]ustom command"
   "[q]uit"
 )
@@ -15,7 +16,7 @@ for cmd in "${COMMANDS[@]}"; do
   commands_items+="$cmd\n"
 done
 
-tmux display-popup -E "
+tmux display-popup -E -w 80% -h 80% "
   run_cmd() {
     local current_dir=\"\$(tmux display-message -p '#{pane_current_path}')\"
 
@@ -39,6 +40,9 @@ tmux display-popup -E "
       '[u]v run ipython')
         cmd='uv run ipython'
         ;;
+      '[t]erminal')
+        cmd=''
+        ;;
       '[c]ustom command')
         cmd=\$(bash -c 'read -p \"Command: \" input && echo \"\$input\"' </dev/tty)
         ;;
@@ -46,8 +50,6 @@ tmux display-popup -E "
         exit 0
         ;;
     esac
-
-    [ -z \"\$cmd\" ] && exit 0
 
     session_name=\$(echo \"\$current_dir\" | sed \"s|\$HOME/||\" | tr '/' '-' | tr ' ' '-')
 
@@ -57,7 +59,11 @@ tmux display-popup -E "
     if [ \$? -eq 0 ]; then
       tmux attach -t \"\$session_name\"
     else
-      tmux new-session -s \"\$session_name\" -c \"\$current_dir\" \"bash -lc '\$cmd'\"
+      if [ -z \"\$cmd\" ]; then
+        tmux new-session -s \"\$session_name\" -c \"\$current_dir\"
+      else
+        tmux new-session -s \"\$session_name\" -c \"\$current_dir\" \"bash -lc '\$cmd'\"
+      fi
     fi
   }
 
