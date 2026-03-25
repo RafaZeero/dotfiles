@@ -134,6 +134,12 @@ alias python='python3'
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
+# kitty
+export PATH="$HOME/.local/kitty.app/bin:$PATH"
+
+# jupytext - traduz ipynb -> py temporariamente
+export PATH="$HOME/.virtualenvs/nvim/bin:$PATH"
+
 # loads local envs [private]
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
