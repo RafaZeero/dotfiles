@@ -52,6 +52,7 @@ return {
         { "<leader>b", group = "[B]uffer" },
         { "<leader>g", group = "[G]it" },
         { "<leader>p", group = "[P]ersonal" },
+        { "<leader>m", group = "[M]olten" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
       },
     },

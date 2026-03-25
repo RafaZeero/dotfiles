@@ -74,10 +74,10 @@ set("n", "<leader>bs", "<cmd>%bd|e#<CR>", { desc = "Remove other buffers" })
 
 set("n", "<leader>lp", [[viw<leader>p]], { desc = "Replace word with copy reference" })
 
-set("n", "<leader>cc", function()
-  vim.cmd.new()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 12)
-  vim.wo.winfixheight = true
-  vim.fn.termopen("claude")
-end, { desc = "Open claude code" })
+-- set("n", "<leader>cc", function()
+--   vim.cmd.new()
+--   vim.cmd.wincmd("J")
+--   vim.api.nvim_win_set_height(0, 12)
+--   vim.wo.winfixheight = true
+--   vim.fn.termopen("claude")
+-- end, { desc = "Open claude code" })
