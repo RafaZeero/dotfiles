@@ -37,3 +37,51 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.scrolloff = 0
   end,
 })
+
+vim.api.nvim_create_user_command("NewIPYNB", function(opts)
+  local filename = opts.args ~= "" and opts.args or "notebook.ipynb"
+
+  if not filename:match("%.ipynb$") then
+    filename = filename .. ".ipynb"
+  end
+
+  local dir = vim.fn.getcwd()
+  local path = dir .. "/" .. filename
+
+  vim.fn.writefile({
+    "{",
+    ' "cells": [',
+    "  {",
+    '   "cell_type": "code",',
+    '   "execution_count": null,',
+    '   "metadata": {},',
+    '   "outputs": [],',
+    '   "source": []',
+    "  }",
+    " ],",
+    ' "metadata": {',
+    '  "kernelspec": {',
+    '   "display_name": "venv",',
+    '   "language": "python",',
+    '   "name": "python3"',
+    "  },",
+    '  "language_info": {',
+    '   "codemirror_mode": {',
+    '    "name": "ipython",',
+    '    "version": 3',
+    "   },",
+    '   "file_extension": ".py",',
+    '   "mimetype": "text/x-python",',
+    '   "name": "python",',
+    '   "nbconvert_exporter": "python",',
+    '   "pygments_lexer": "ipython3",',
+    '   "version": "3.10.11"',
+    "  }",
+    " },",
+    ' "nbformat": 4,',
+    ' "nbformat_minor": 2',
+    "}",
+  }, path)
+
+  -- vim.cmd("0r ~/dotfiles/nvim/templates/ipynb.json")
+end, { nargs = "?" })
