@@ -160,6 +160,7 @@ return {
         ts_ls = {},
         -- denols = true,
         jsonls = {
+          filetypes = { "json", "jsonc", "jsonl" },
           server_capabilities = {
             documentFormattingProvider = false,
           },
@@ -218,14 +219,14 @@ return {
         --   -- },
         -- },
 
-        -- clangd = {
-        --   -- cmd = { "clangd", unpack(require("custom.clangd").flags) },
-        --   -- TODO: Could include cmd, but not sure those were all relevant flags.
-        --   --    looks like something i would have added while i was floundering
-        --   init_options = { clangdFileStatus = true },
-        --
-        --   filetypes = { "c" },
-        -- },
+        clangd = {
+          -- cmd = { "clangd", unpack(require("custom.clangd").flags) },
+          -- TODO: Could include cmd, but not sure those were all relevant flags.
+          --    looks like something i would have added while i was floundering
+          init_options = { clangdFileStatus = true },
+
+          filetypes = { "c" },
+        },
 
         tailwindcss = {
           init_options = {
